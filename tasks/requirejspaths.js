@@ -23,7 +23,9 @@ module.exports = function(grunt) {
     // Merge task-specific and/or target-specific options with these defaults.
     var options = this.options({
       baseRoot: '',
-      baseUrl: ''
+      baseUrl: '',
+      scriptTag: true,
+      useStrict: true
     });
     if (!options.outputFile) {
       grunt.fail.warn('Option `outputFile` not specified.');
@@ -45,14 +47,14 @@ module.exports = function(grunt) {
     }
     else {
       /*jshint multistr:true */
-      templateString = options.template || '\
-<script>\n\
-"use strict";\n\
-require.config({\n\
+      templateString = options.template || (
+        (options.scriptTag ? '<script>\n' : '') +
+        (options.useStrict ? '\'use strict\';\n' : '') +
+'require.config({\n\
 <% if (baseUrl) { %>  baseUrl: "<%= baseUrl %>",\n<% } %>\
   paths: <%= JSON.stringify(moduleMappings, null, 2) %>\n\
-});\n\
-</script>';
+});\n' +
+        (options.scriptTag ? '</script>\n': ''));
     }
 
     var assets = grunt.filerev.summary;
