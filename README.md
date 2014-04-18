@@ -82,8 +82,21 @@ Default value: `undefined`
 
 A template file whose content is used for rending the output file. This option overrides `options.template`.
 
+#### options.scriptTag
+Type: `Boolean`
+Default value: true
+
+If you want to output a pure JavaScript file, set this to `false`.
+
+#### options.useStrict
+Type: `Boolean`
+Default value: true
+
+Output the `'use strict'` detective before the JavaScript code. 
+
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
+v0.1.1 Add `scriptTag` and `useStrict` options.
 v0.1.0 Initial release.
