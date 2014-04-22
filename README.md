@@ -98,5 +98,8 @@ Output the `'use strict'` detective before the JavaScript code.
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
-v0.1.1 Add `scriptTag` and `useStrict` options.
+v0.2.1 Fix docs.
+
+v0.2.0 Add `scriptTag` and `useStrict` options.
+
 v0.1.0 Initial release.
