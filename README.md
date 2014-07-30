@@ -94,6 +94,14 @@ Default value: true
 
 Output the `'use strict'` detective before the JavaScript code. 
 
+#### options.skipUnrevved
+Type: `Boolean`
+Default value: false
+
+If `true`, skip the file not found in `grunt.filerev.summary`. Otherwise it will show a warning (the default behavior). 
+
+(New in v0.2.3)
+
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
