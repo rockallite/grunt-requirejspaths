@@ -25,7 +25,8 @@ module.exports = function(grunt) {
       baseRoot: '',
       baseUrl: '',
       scriptTag: true,
-      useStrict: true
+      useStrict: true,
+      skipUnrevved: false
     });
     if (!options.outputFile) {
       grunt.fail.warn('Option `outputFile` not specified.');
@@ -64,7 +65,11 @@ module.exports = function(grunt) {
       var basePath = path.join(options.baseRoot, module) + '.js';
       var longPath = assets[basePath];
       if (!longPath) {
-          grunt.fail.warn('"' + basePath + '" was not found in filerev hash. Make sure the module is revved.');
+          if (options.skipUnrevved) {
+              grunt.log.writeln('"' + basePath + '" was not found in filerev hash. Skipped.');
+          } else {
+              grunt.fail.warn('"' + basePath + '" was not found in filerev hash. Make sure the module is revved. If you want to skip un-revved files, use the `skipUnrevved: true` option.');
+          }
           return;
       }
       var shortPath = path.relative(options.baseRoot, longPath);
