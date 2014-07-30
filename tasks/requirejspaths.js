@@ -61,7 +61,12 @@ module.exports = function(grunt) {
     var path = require('path');
     var mappings = {};
     options.modules.forEach(function (module) {
-      var longPath = assets[path.join(options.baseRoot, module) + '.js'];
+      var basePath = path.join(options.baseRoot, module) + '.js';
+      var longPath = assets[basePath];
+      if (!longPath) {
+          grunt.fail.warn('"' + basePath + '" was not found in filerev hash. Make sure the module is revved.');
+          return;
+      }
       var shortPath = path.relative(options.baseRoot, longPath);
       mappings[module] = shortPath.substr(0, shortPath.length - path.extname(shortPath).length);
     });
