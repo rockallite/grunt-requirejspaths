@@ -1,7 +1,7 @@
 {
   "name": "grunt-requirejspaths",
   "description": "Find RequireJS modules and make a file which contains corresponding paths config.",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "homepage": "https://github.com/rockallite/grunt-requirejspaths",
   "author": {
     "name": "Rockallite Wulf"
