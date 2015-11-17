@@ -62,8 +62,8 @@ module.exports = function(grunt) {
     var path = require('path');
     var mappings = {};
     options.modules.forEach(function (module) {
-      var basePath = path.join(options.baseRoot, module) + '.js';
-      var longPath = assets[basePath];
+      var basePath = path.join(options.baseRoot, module);
+      var longPath = assets[basePath] || assets[basePath + '.js'];
       if (!longPath) {
           if (options.skipUnrevved) {
               grunt.log.writeln('"' + basePath + '" was not found in filerev hash. Skipped.');
@@ -73,7 +73,11 @@ module.exports = function(grunt) {
           return;
       }
       var shortPath = path.relative(options.baseRoot, longPath);
-      mappings[module] = shortPath.substr(0, shortPath.length - path.extname(shortPath).length);
+      if (longPath.indexOf('.js') !== -1) {
+          mappings[module] = shortPath.substr(0, shortPath.length - path.extname(shortPath).length);
+      } else {
+          mappings[module.substr(0, module.length - path.extname(module).length)] = shortPath;
+      }
     });
     var data = {
       baseUrl: options.baseUrl,
